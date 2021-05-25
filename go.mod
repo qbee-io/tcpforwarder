@@ -1,4 +1,4 @@
-module github.com/jpillora/chisel
+module github.com/qbee-io/tcpforwarder
 
 require (
 	github.com/andrew-d/go-termutil v0.0.0-20150726205930-009166a695a2 // indirect
@@ -14,3 +14,5 @@ require (
 	golang.org/x/net v0.0.0-20181017193950-04a2e542c03f // indirect
 	golang.org/x/sys v0.0.0-20181019160139-8e24a49d80f8 // indirect
 )
+
+go 1.13

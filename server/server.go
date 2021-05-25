@@ -15,10 +15,10 @@ import (
 	"github.com/jpillora/requestlog"
 	"golang.org/x/crypto/ssh"
 
-	"github.com/jpillora/chisel/share"
+	"github.com/qbee-io/tcpforwarder/share"
 )
 
-// Config is the configuration for the chisel service
+// Config is the configuration for the tcpforwarder service
 type Config struct {
 	KeySeed  string
 	AuthFile string
@@ -28,7 +28,7 @@ type Config struct {
 	Reverse  bool
 }
 
-// Server respresent a chisel service
+// Server respresent a tcpforwarder service
 type Server struct {
 	*chshare.Logger
 	connStats    chshare.ConnStats
@@ -49,7 +49,7 @@ var upgrader = websocket.Upgrader{
 	CheckOrigin:     func(r *http.Request) bool { return true },
 }
 
-// NewServer creates and returns a new chisel server
+// NewServer creates and returns a new tcpforwarder server
 func NewServer(config *Config) (*Server, error) {
 	s := &Server{
 		httpServer: chshare.NewHTTPServer(),
@@ -124,7 +124,7 @@ func NewServer(config *Config) (*Server, error) {
 	return s, nil
 }
 
-// Run is responsible for starting the chisel service
+// Run is responsible for starting the tcpforwarder service
 func (s *Server) Run(host, port string) error {
 	if err := s.Start(host, port); err != nil {
 		return err

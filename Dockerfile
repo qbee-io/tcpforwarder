@@ -8,11 +8,11 @@ ADD . /src
 WORKDIR /src
 RUN go build \
     -mod vendor \
-    -ldflags "-X github.com/jpillora/chisel/share.BuildVersion=$(git describe --abbrev=0 --tags)" \
-    -o chisel
+    -ldflags "-X github.com/qbee-io/tcpforwarder/share.BuildVersion=$(git describe --abbrev=0 --tags)" \
+    -o tcpforwarder
 # container stage
 FROM alpine
 RUN apk update && apk add --no-cache ca-certificates
 WORKDIR /app
-COPY --from=build-env /src/chisel /app/chisel
-ENTRYPOINT ["/app/chisel"]
+COPY --from=build-env /src/tcpforwarder /app/tcpforwarder
+ENTRYPOINT ["/app/tcpforwarder"]

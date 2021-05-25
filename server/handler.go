@@ -10,15 +10,15 @@ import (
 
 	"golang.org/x/crypto/ssh"
 
-	"github.com/jpillora/chisel/share"
+	"github.com/qbee-io/tcpforwarder/share"
 )
 
-// handleClientHandler is the main http websocket handler for the chisel server
+// handleClientHandler is the main http websocket handler for the tcpforwarder server
 func (s *Server) handleClientHandler(w http.ResponseWriter, r *http.Request) {
-	//websockets upgrade AND has chisel prefix
+	//websockets upgrade AND has tcpforwarder prefix
 	upgrade := strings.ToLower(r.Header.Get("Upgrade"))
 	protocol := r.Header.Get("Sec-WebSocket-Protocol")
-	if upgrade == "websocket" && strings.HasPrefix(protocol, "chisel-") {
+	if upgrade == "websocket" && strings.HasPrefix(protocol, "tcpforwarder-") {
 		if protocol == chshare.ProtocolVersion {
 			s.handleWebsocket(w, r)
 			return

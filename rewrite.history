@@ -1,0 +1,11 @@
+  104  git checkout ee6601a6bbde -b qbee-tcpforwarder
+  105  git log
+  106  vim rewrite.history 
+  107  find . -name "*.go" | xargs sed -i 's:jpillora/chisel:qbee-io/tcpforwarder:g'
+  109  sed -i 's:jpillora/chisel:qbee-io/tcpforwarder:g' go.mod
+  111  sed -i 's:CHISEL:TCPFORWARDER:g' main.go
+  122  find . -name "*.go" | xargs sed -i 's:chisel:tcpforwarder:g'
+  129  sed -i 's:jpillora/chisel:qbee-io/tcpforwarder:g' README.md Dockerfile .gitignore 
+  130  sed -i 's:chisel:tcpforwarder:g' README.md Dockerfile .gitignore 
+  132  cat rewrite.history 
+  133  env GOOS=windows GOARCH=amd64 go build

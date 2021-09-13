@@ -6,7 +6,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/jpillora/chisel/share/cio"
+	"github.com/qbee-io/tcpforwarder/share/cio"
 	"github.com/jpillora/sizestr"
 )
 

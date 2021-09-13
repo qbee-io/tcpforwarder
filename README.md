@@ -1,6 +1,6 @@
-# chisel
+# tcpforwarder
 
-[![GoDoc](https://godoc.org/github.com/jpillora/chisel?status.svg)](https://godoc.org/github.com/jpillora/chisel) [![CI](https://github.com/jpillora/chisel/workflows/CI/badge.svg)](https://github.com/jpillora/chisel/actions?workflow=CI)
+[![GoDoc](https://godoc.org/github.com/qbee-io/tcpforwarder?status.svg)](https://godoc.org/github.com/qbee-io/tcpforwarder) [![CI](https://github.com/qbee-io/tcpforwarder/workflows/CI/badge.svg)](https://github.com/qbee-io/tcpforwarder/actions?workflow=CI)
 
 Chisel is a fast TCP/UDP tunnel, transported over HTTP, secured via SSH. Single executable including both client and server. Written in Go (golang). Chisel is mainly useful for passing through firewalls, though it can also be used to provide a secure endpoint into your network.
 
@@ -25,50 +25,50 @@ Chisel is a fast TCP/UDP tunnel, transported over HTTP, secured via SSH. Single 
 
 **Binaries**
 
-[![Releases](https://img.shields.io/github/release/jpillora/chisel.svg)](https://github.com/jpillora/chisel/releases) [![Releases](https://img.shields.io/github/downloads/jpillora/chisel/total.svg)](https://github.com/jpillora/chisel/releases)
+[![Releases](https://img.shields.io/github/release/qbee-io/tcpforwarder.svg)](https://github.com/qbee-io/tcpforwarder/releases) [![Releases](https://img.shields.io/github/downloads/qbee-io/tcpforwarder/total.svg)](https://github.com/qbee-io/tcpforwarder/releases)
 
-See [the latest release](https://github.com/jpillora/chisel/releases/latest) or download and install it now with `curl https://i.jpillora.com/chisel! | bash`
+See [the latest release](https://github.com/qbee-io/tcpforwarder/releases/latest) or download and install it now with `curl https://i.jpillora.com/tcpforwarder! | bash`
 
 **Docker**
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/jpillora/chisel.svg)](https://hub.docker.com/r/jpillora/chisel/) [![Image Size](https://images.microbadger.com/badges/image/jpillora/chisel.svg)](https://microbadger.com/images/jpillora/chisel)
+[![Docker Pulls](https://img.shields.io/docker/pulls/qbee-io/tcpforwarder.svg)](https://hub.docker.com/r/qbee-io/tcpforwarder/) [![Image Size](https://images.microbadger.com/badges/image/qbee-io/tcpforwarder.svg)](https://microbadger.com/images/qbee-io/tcpforwarder)
 
 ```sh
-docker run --rm -it jpillora/chisel --help
+docker run --rm -it qbee-io/tcpforwarder --help
 ```
 
 **Fedora**
 
-The package is maintained by the Fedora community. If you encounter issues related to the usage of the RPM, please use this [issue tracker](https://bugzilla.redhat.com/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&classification=Fedora&component=chisel&list_id=11614537&product=Fedora&product=Fedora%20EPEL).
+The package is maintained by the Fedora community. If you encounter issues related to the usage of the RPM, please use this [issue tracker](https://bugzilla.redhat.com/buglist.cgi?bug_status=NEW&bug_status=ASSIGNED&classification=Fedora&component=tcpforwarder&list_id=11614537&product=Fedora&product=Fedora%20EPEL).
 
 ```sh
-sudo dnf -y install chisel
+sudo dnf -y install tcpforwarder
 ```
 
 **Source**
 
 ```sh
-$ go get -v github.com/jpillora/chisel
+$ go get -v github.com/qbee-io/tcpforwarder
 ```
 
 ### Demo
 
-A [demo app](https://chisel-demo.herokuapp.com) on Heroku is running this `chisel server`:
+A [demo app](https://tcpforwarder-demo.herokuapp.com) on Heroku is running this `tcpforwarder server`:
 
 ```sh
-$ chisel server --port $PORT --proxy http://example.com
+$ tcpforwarder server --port $PORT --proxy http://example.com
 # listens on $PORT, proxy web requests to http://example.com
 ```
 
 This demo app is also running a [simple file server](https://www.npmjs.com/package/serve) on `:3000`, which is normally inaccessible due to Heroku's firewall. However, if we tunnel in with:
 
 ```sh
-$ chisel client https://chisel-demo.herokuapp.com 3000
-# connects to chisel server at https://chisel-demo.herokuapp.com,
+$ tcpforwarder client https://tcpforwarder-demo.herokuapp.com 3000
+# connects to tcpforwarder server at https://tcpforwarder-demo.herokuapp.com,
 # tunnels your localhost:3000 to the server's localhost:3000
 ```
 
-and then visit [localhost:3000](http://localhost:3000/), we should see a directory listing. Also, if we visit the [demo app](https://chisel-demo.herokuapp.com) in the browser we should hit the server's default proxy and see a copy of [example.com](http://example.com).
+and then visit [localhost:3000](http://localhost:3000/), we should see a directory listing. Also, if we visit the [demo app](https://tcpforwarder-demo.herokuapp.com) in the browser we should hit the server's default proxy and see a copy of [example.com](http://example.com).
 
 ### Usage
 
@@ -76,30 +76,30 @@ and then visit [localhost:3000](http://localhost:3000/), we should see a directo
   or use https://github.com/jpillora/md-tmpl
     with $ md-tmpl -w README.md -->
 
-<!--tmpl,code=plain:echo "$ chisel --help" && go run main.go --help | sed 's#0.0.0-src (go1\..*)#X.Y.Z#' -->
+<!--tmpl,code=plain:echo "$ tcpforwarder --help" && go run main.go --help | sed 's#0.0.0-src (go1\..*)#X.Y.Z#' -->
 ``` plain 
-$ chisel --help
+$ tcpforwarder --help
 
-  Usage: chisel [command] [--help]
+  Usage: tcpforwarder [command] [--help]
 
   Version: X.Y.Z
 
   Commands:
-    server - runs chisel in server mode
-    client - runs chisel in client mode
+    server - runs tcpforwarder in server mode
+    client - runs tcpforwarder in client mode
 
   Read more:
-    https://github.com/jpillora/chisel
+    https://github.com/qbee-io/tcpforwarder
 
 ```
 <!--/tmpl-->
 
 
-<!--tmpl,code=plain:echo "$ chisel server --help" && go run main.go server --help | cat | sed 's#0.0.0-src (go1\..*)#X.Y.Z#' -->
+<!--tmpl,code=plain:echo "$ tcpforwarder server --help" && go run main.go server --help | cat | sed 's#0.0.0-src (go1\..*)#X.Y.Z#' -->
 ``` plain 
-$ chisel server --help
+$ tcpforwarder server --help
 
-  Usage: chisel server [options]
+  Usage: tcpforwarder server [options]
 
   Options:
 
@@ -139,11 +139,11 @@ $ chisel server --help
     to '25s' (set to 0s to disable).
 
     --backend, Specifies another HTTP server to proxy requests to when
-    chisel receives a normal HTTP request. Useful for hiding chisel in
+    tcpforwarder receives a normal HTTP request. Useful for hiding tcpforwarder in
     plain sight.
 
     --socks5, Allow clients to access the internal SOCKS5 proxy. See
-    chisel client --help for more information.
+    tcpforwarder client --help for more information.
 
     --reverse, Allow clients to specify reverse port forwarding remotes
     in addition to normal remotes.
@@ -159,7 +159,7 @@ $ chisel server --help
     --tls-domain, Enables TLS and automatically acquires a TLS key and
     certificate using LetsEncypt. Setting --tls-domain requires port 443.
     You may specify multiple --tls-domain flags to serve multiple domains.
-    The resulting files are cached in the "$HOME/.cache/chisel" directory.
+    The resulting files are cached in the "$HOME/.cache/tcpforwarder" directory.
     You can modify this path by setting the CHISEL_LE_CACHE variable,
     or disable caching by setting this variable to "-". You can optionally
     provide a certificate notification email by setting CHISEL_LE_EMAIL.
@@ -176,7 +176,7 @@ $ chisel server --help
     --help, This help text
 
   Signals:
-    The chisel process is listening for:
+    The tcpforwarder process is listening for:
       a SIGUSR2 to print process stats, and
       a SIGHUP to short-circuit the client reconnect timer
 
@@ -184,19 +184,19 @@ $ chisel server --help
     X.Y.Z
 
   Read more:
-    https://github.com/jpillora/chisel
+    https://github.com/qbee-io/tcpforwarder
 
 ```
 <!--/tmpl-->
 
 
-<!--tmpl,code=plain:echo "$ chisel client --help" && go run main.go client --help | sed 's#0.0.0-src (go1\..*)#X.Y.Z#' -->
+<!--tmpl,code=plain:echo "$ tcpforwarder client --help" && go run main.go client --help | sed 's#0.0.0-src (go1\..*)#X.Y.Z#' -->
 ``` plain 
-$ chisel client --help
+$ tcpforwarder client --help
 
-  Usage: chisel client [options] <server> <remote> [remote] [remote] ...
+  Usage: tcpforwarder client [options] <server> <remote> [remote] [remote] ...
 
-  <server> is the URL to the chisel server.
+  <server> is the URL to the tcpforwarder server.
 
   <remote>s are remote connections tunneled through the server, each of
   which come in the form:
@@ -231,13 +231,13 @@ $ chisel client --help
       stdio:example.com:22
       1.1.1.1:53/udp
 
-    When the chisel server has --socks5 enabled, remotes can
+    When the tcpforwarder server has --socks5 enabled, remotes can
     specify "socks" in place of remote-host and remote-port.
     The default local host and port for a "socks" remote is
     127.0.0.1:1080. Connections to this remote will terminate
     at the server's internal SOCKS5 proxy.
 
-    When the chisel server has --reverse enabled, remotes can
+    When the tcpforwarder server has --reverse enabled, remotes can
     be prefixed with R to denote that they are reversed. That
     is, the server will listen and accept connections, and they
     will be proxied through the client which specified the remote.
@@ -248,7 +248,7 @@ $ chisel client --help
     When stdio is used as local-host, the tunnel will connect standard
     input/output of this program with the remote. This is useful when 
     combined with ssh ProxyCommand. You can use
-      ssh -o ProxyCommand='chisel client chiselserver stdio:%h:%p' \
+      ssh -o ProxyCommand='tcpforwarder client tcpforwarderserver stdio:%h:%p' \
           user@example.com
     to connect to an SSH server through the tunnel.
 
@@ -279,7 +279,7 @@ $ chisel client --help
     disconnection. Defaults to 5 minutes.
 
     --proxy, An optional HTTP CONNECT or SOCKS5 proxy which will be
-    used to reach the chisel server. Authentication can be specified
+    used to reach the tcpforwarder server. Authentication can be specified
     inside the URL.
     For example, http://admin:password@my-server.com:8081
             or: socks://admin:password@my-server.com:1080
@@ -291,7 +291,7 @@ $ chisel client --help
     found in the server url).
 
     --tls-ca, An optional root certificate bundle used to verify the
-    chisel server. Only valid when connecting to the server with
+    tcpforwarder server. Only valid when connecting to the server with
     "https" or "wss". By default, the operating system CAs will be used.
 
     --tls-skip-verify, Skip server TLS certificate verification of
@@ -316,7 +316,7 @@ $ chisel client --help
     --help, This help text
 
   Signals:
-    The chisel process is listening for:
+    The tcpforwarder process is listening for:
       a SIGUSR2 to print process stats, and
       a SIGHUP to short-circuit the client reconnect timer
 
@@ -324,14 +324,14 @@ $ chisel client --help
     X.Y.Z
 
   Read more:
-    https://github.com/jpillora/chisel
+    https://github.com/qbee-io/tcpforwarder
 
 ```
 <!--/tmpl-->
 
 ### Security
 
-Encryption is always enabled. When you start up a chisel server, it will generate an in-memory ECDSA public/private key pair. The public key fingerprint (base64 encoded SHA256) will be displayed as the server starts. Instead of generating a random key, the server may optionally specify a key seed, using the `--key` option, which will be used to seed the key generation. When clients connect, they will also display the server's public key fingerprint. The client can force a particular fingerprint using the `--fingerprint` option. See the `--help` above for more information.
+Encryption is always enabled. When you start up a tcpforwarder server, it will generate an in-memory ECDSA public/private key pair. The public key fingerprint (base64 encoded SHA256) will be displayed as the server starts. Instead of generating a random key, the server may optionally specify a key seed, using the `--key` option, which will be used to seed the key generation. When clients connect, they will also display the server's public key fingerprint. The client can force a particular fingerprint using the `--fingerprint` option. See the `--help` above for more information.
 
 ### Authentication
 
@@ -341,19 +341,19 @@ Internally, this is done using the _Password_ authentication method provided by 
 
 ### SOCKS5 Guide
 
-1. Start your chisel server
+1. Start your tcpforwarder server
 
 ```sh
 docker run \
-  --name chisel -p 9312:9312 \
+  --name tcpforwarder -p 9312:9312 \
   -d --restart always \
-  jpillora/chisel server -p 9312 --socks5 --key supersecret
+  qbee-io/tcpforwarder server -p 9312 --socks5 --key supersecret
 ```
 
-2. Connect your chisel client (using server's fingerprint)
+2. Connect your tcpforwarder client (using server's fingerprint)
 
 ```sh
-chisel client --fingerprint 'rHb55mcxf6vSckL2AezFV09rLs7pfPpavVu++MF7AhQ=' <server-address>:9312 socks
+tcpforwarder client --fingerprint 'rHb55mcxf6vSckL2AezFV09rLs7pfPpavVu++MF7AhQ=' <server-address>:9312 socks
 ```
 
 3. Point your SOCKS5 clients (e.g. OS/Browser) to:
@@ -379,9 +379,9 @@ Since WebSockets support is required:
 
 - http://golang.org/doc/code.html
 - http://golang.org/doc/effective_go.html
-- `github.com/jpillora/chisel/share` contains the shared package
-- `github.com/jpillora/chisel/server` contains the server package
-- `github.com/jpillora/chisel/client` contains the client package
+- `github.com/qbee-io/tcpforwarder/share` contains the shared package
+- `github.com/qbee-io/tcpforwarder/server` contains the server package
+- `github.com/qbee-io/tcpforwarder/client` contains the client package
 
 ### Changelog
 

@@ -11,9 +11,9 @@ import (
 	"time"
 
 	"github.com/armon/go-socks5"
-	"github.com/jpillora/chisel/share/cio"
-	"github.com/jpillora/chisel/share/cnet"
-	"github.com/jpillora/chisel/share/settings"
+	"github.com/qbee-io/tcpforwarder/share/cio"
+	"github.com/qbee-io/tcpforwarder/share/cnet"
+	"github.com/qbee-io/tcpforwarder/share/settings"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/sync/errgroup"
 )
@@ -28,9 +28,9 @@ type Config struct {
 }
 
 //Tunnel represents an SSH tunnel with proxy capabilities.
-//Both chisel client and server are Tunnels.
-//chisel client has a single set of remotes, whereas
-//chisel server has multiple sets of remotes (one set per client).
+//Both tcpforwarder client and server are Tunnels.
+//tcpforwarder client has a single set of remotes, whereas
+//tcpforwarder server has multiple sets of remotes (one set per client).
 //Each remote has a 1:1 mapping to a proxy.
 //Proxies listen, send data over ssh, and the other end of the ssh connection
 //communicates with the endpoint and returns the response.

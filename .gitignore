@@ -1,7 +1,7 @@
 
 *.swp
 .idea/
-chisel
+tcpforwarder
 bin/
 release/
 tmp/

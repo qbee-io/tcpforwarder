@@ -6,20 +6,20 @@ import (
 	"sync/atomic"
 	"time"
 
-	chshare "github.com/jpillora/chisel/share"
-	"github.com/jpillora/chisel/share/cnet"
-	"github.com/jpillora/chisel/share/settings"
-	"github.com/jpillora/chisel/share/tunnel"
+	chshare "github.com/qbee-io/tcpforwarder/share"
+	"github.com/qbee-io/tcpforwarder/share/cnet"
+	"github.com/qbee-io/tcpforwarder/share/settings"
+	"github.com/qbee-io/tcpforwarder/share/tunnel"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/sync/errgroup"
 )
 
-// handleClientHandler is the main http websocket handler for the chisel server
+// handleClientHandler is the main http websocket handler for the tcpforwarder server
 func (s *Server) handleClientHandler(w http.ResponseWriter, r *http.Request) {
-	//websockets upgrade AND has chisel prefix
+	//websockets upgrade AND has tcpforwarder prefix
 	upgrade := strings.ToLower(r.Header.Get("Upgrade"))
 	protocol := r.Header.Get("Sec-WebSocket-Protocol")
-	if upgrade == "websocket" && strings.HasPrefix(protocol, "chisel-") {
+	if upgrade == "websocket" && strings.HasPrefix(protocol, "tcpforwarder-") {
 		if protocol == chshare.ProtocolVersion {
 			s.handleWebsocket(w, r)
 			return
@@ -75,7 +75,7 @@ func (s *Server) handleWebsocket(w http.ResponseWriter, req *http.Request) {
 		user = u
 		s.sessions.Del(sid)
 	}
-	// chisel server handshake (reverse of client handshake)
+	// tcpforwarder server handshake (reverse of client handshake)
 	// verify configuration
 	l.Debugf("Verifying configuration")
 	// wait for request, with timeout

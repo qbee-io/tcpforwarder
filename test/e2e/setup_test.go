@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	chclient "github.com/jpillora/chisel/client"
-	chserver "github.com/jpillora/chisel/server"
+	chclient "github.com/qbee-io/tcpforwarder/client"
+	chserver "github.com/qbee-io/tcpforwarder/server"
 )
 
 const debug = true

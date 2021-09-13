@@ -9,7 +9,7 @@ import (
 	"sync"
 
 	"github.com/fsnotify/fsnotify"
-	"github.com/jpillora/chisel/share/cio"
+	"github.com/qbee-io/tcpforwarder/share/cio"
 )
 
 type Users struct {
